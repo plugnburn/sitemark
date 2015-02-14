@@ -65,10 +65,6 @@ htmlRender = (title, mdContent, themeName, menuBySel, menuMode, favicon) ->
 		metas += "<link rel=icon href=\"#{favicon}\">" if favicon
 		outHtml = "<head>#{metas}<title>#{title}</title><link rel=stylesheet href=\"#{themeCss}\"></head><body style='padding-top:3em'>#{body}</body>"
 		document.documentElement.innerHTML = outHtml
-		styleEl = document.createElement 'link'
-		styleEl.rel = 'stylesheet'
-		styleEl.href = themeCss
-		document.head.appendChild styleEl
 		if menuBySel
 			jqScript = document.createElement 'script'
 			jqScript.src = "#{proto}//code.jquery.com/jquery-#{jqVersion}.min.js"
