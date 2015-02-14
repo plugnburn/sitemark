@@ -21,7 +21,7 @@ To get started with Sitemark, just [download the library](#get-sitemark) and cop
 <xmp data-theme=united data-menu-by=h2 data-menu-mode=default data-fav="icon.png">
 My cool **Markdown content here**
 </xmp>
-<script src="sitemark.min.js"></script>
+<script src="http://plugnburn.github.io/sitemark/sitemark.min.js"></script>
 ```
 
 That's pretty much it. But what do all these `data-` attributes mean? All of them are optional:
@@ -43,7 +43,7 @@ If you happen to use `<xmp>...</xmp>` tags **within** your document, you have to
 </xmp>
 ...blah...
 </pre>
-<script src="sitemark.min.js"></script>
+<script src="http://plugnburn.github.io/sitemark/sitemark.min.js"></script>
 ```
 _Note: if you have to substitute `<xmp>` tag for any other one, please test the rendering results carefully. Often `<textarea data-root>` tag will work fine._
 
@@ -75,9 +75,10 @@ Get Sitemark
 
 Sitemark library can be obtained and used in your projects in one of these ways:
 
-- **Include the hosted library**: `<script src=""></script>`
+- **Include the hosted library**: `<script src="http://plugnburn.github.io/sitemark/sitemark.min.js"></script>`
 - **Include the hosted library embedded in a GIF**: `<script src="http://imgur.com/"></script>` - yes, did you know that you can hide JS in GIF images thanks to [Giffer](https://gist.github.com/plugnburn/3364bc56ecc820534143) script?
-- **Download the minified version**: [sitemark.min.js]()
+- **Download the minified version**: <a href="http://plugnburn.github.io/sitemark/sitemark.min.js" download="sitemark.min.js">sitemark.min.js</a>
+- **Download the source code and compile it**: `git clone https://github.com/plugnburn/sitemark.git && cd sitemark && coffee -c sitemark.coffee`
 
 Version timeline
 ----------------
