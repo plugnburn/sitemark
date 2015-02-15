@@ -96,7 +96,7 @@
         headContent += "<link rel=icon href=\"" + favicon + "\">";
       }
       headContent += "<title>" + title + "</title><link rel=stylesheet type=\"text/css\" href=\"" + themeCss + "\">";
-      document.head.innerHTML = headContent;
+      document.head.insertAdjacentHTML('afterbegin', headContent);
       document.body.style.paddingTop = '3em';
       document.body.innerHTML = navSkeleton + "<div class=container>" + htmlContent + "</div>";
       if (menuBySel) {

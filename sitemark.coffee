@@ -64,7 +64,7 @@ htmlRender = (title, mdContent, themeName, menuBySel, menuMode, favicon) ->
 		headContent = '<meta charset=utf-8><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1">'
 		headContent += "<link rel=icon href=\"#{favicon}\">" if favicon
 		headContent += "<title>#{title}</title><link rel=stylesheet type=\"text/css\" href=\"#{themeCss}\">"
-		document.head.innerHTML = headContent
+		document.head.insertAdjacentHTML 'afterbegin', headContent
 		document.body.style.paddingTop = '3em'
 		document.body.innerHTML = "#{navSkeleton}<div class=container>#{htmlContent}</div>"
 		if menuBySel
