@@ -58,13 +58,15 @@ htmlRender = (title, mdContent, themeName, menuBySel, menuMode, favicon) ->
 			navBtn.parentNode.removeChild navBtn
 	
 	visualize = (htmlContent) ->
+		document.body.style.display = 'none'
 		navBtnSkeleton = if menuBySel then '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>' else ''
 		navSkeleton = '<nav class="navbar navbar-' + menuMode + ' navbar-fixed-top"><div class="container"><div class="navbar-header">' + navBtnSkeleton + '<a class="navbar-brand" href="#">' + title + '</a></div></div></nav>'
-		body = "#{navSkeleton}<div class=container>#{htmlContent}</div>"
-		metas = '<meta charset=utf-8><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1">'
-		metas += "<link rel=icon href=\"#{favicon}\">" if favicon
-		outHtml = "<head>#{metas}<title>#{title}</title><link rel=stylesheet type=\"text/css\" href=\"#{themeCss}\"></head><body style='padding-top:3em'>#{body}</body>"
-		document.documentElement.innerHTML = outHtml
+		headContent = '<meta charset=utf-8><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1">'
+		headContent += "<link rel=icon href=\"#{favicon}\">" if favicon
+		headContent += "<title>#{title}</title><link rel=stylesheet type=\"text/css\" href=\"#{themeCss}\">"
+		document.head.innerHTML = headContent
+		document.body.style.paddingTop = '3em'
+		document.body.innerHTML = "#{navSkeleton}<div class=container>#{htmlContent}</div>"
 		if menuBySel
 			jqScript = document.createElement 'script'
 			jqScript.src = "#{proto}//code.jquery.com/jquery-#{jqVersion}.min.js"
@@ -80,6 +82,7 @@ htmlRender = (title, mdContent, themeName, menuBySel, menuMode, favicon) ->
 				el.outerHTML = '<header class="page-header">' + el.outerHTML + '</header>'
 		else
 			document.body.style.paddingTop = '5em'
+		document.body.style.display = ''
 	
 	mdChecksumKey = 'sitemark' + mdHash(mdContent)
 
@@ -102,5 +105,6 @@ addEventListener 'DOMContentLoaded', ->
 	menuBySel = if rootEl.hasAttribute('data-menu-by') then rootEl.getAttribute('data-menu-by') else false
 	menuMode = if rootEl.hasAttribute('data-menu-mode') then rootEl.getAttribute('data-menu-mode') else 'default'
 	favicon = if rootEl.hasAttribute('data-fav') then rootEl.getAttribute('data-fav') else false
+	rootEl.parentNode.removeChild rootEl
 	htmlRender document.title, mdContent, themeName, menuBySel, menuMode, favicon
 , false
