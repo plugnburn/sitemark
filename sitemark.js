@@ -87,16 +87,33 @@
       }
     };
     visualize = function(htmlContent) {
-      var bsScript, el, headContent, jqScript, navBtnSkeleton, navSkeleton, topHeaders, _i, _len;
+      var bsScript, el, jqScript, linkCss, linkFav, metaCharset, metaIe, metaViewport, navBtnSkeleton, navSkeleton, topHeaders, _i, _len;
       document.body.style.display = 'none';
+      document.title = title;
       navBtnSkeleton = menuBySel ? '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>' : '';
       navSkeleton = '<nav class="navbar navbar-' + menuMode + ' navbar-fixed-top"><div class="container"><div class="navbar-header">' + navBtnSkeleton + '<a class="navbar-brand" href="#">' + title + '</a></div></div></nav>';
-      headContent = '<meta charset=utf-8><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1">';
+      metaCharset = document.createElement('meta');
+      metaCharset.setAttribute('charset', 'utf-8');
+      document.head.appendChild(metaCharset);
+      metaIe = document.createElement('meta');
+      metaIe.setAttribute('http-equiv', 'X-UA-Compatible');
+      metaIe.setAttribute('content', 'IE=edge');
+      document.head.appendChild(metaIe);
+      metaViewport = document.createElement('meta');
+      metaViewport.name = 'viewport';
+      metaViewport.setAttribute('content', 'width=device-width, initial-scale-1');
+      document.head.appendChild(metaViewport);
       if (favicon) {
-        headContent += "<link rel=icon href=\"" + favicon + "\">";
+        linkFav = document.createElement('link');
+        linkFav.rel = 'icon';
+        linkFav.href = favicon;
+        document.head.appendChild(linkFav);
       }
-      headContent += "<title>" + title + "</title><link rel=stylesheet type=\"text/css\" href=\"" + themeCss + "\">";
-      document.head.insertAdjacentHTML('afterbegin', headContent);
+      linkCss = document.createElement('link');
+      linkCss.rel = 'stylesheet';
+      linkCss.type = 'text/css';
+      linkCss.href = themeCss;
+      document.head.appendChild(linkCss);
       document.body.style.paddingTop = '3em';
       document.body.innerHTML = navSkeleton + "<div class=container>" + htmlContent + "</div>";
       if (menuBySel) {
