@@ -71,7 +71,7 @@ htmlRender = (title, mdContent, themeName, menuBySel, menuMode, favicon) ->
 			bsScript = document.createElement 'script'
 			bsScript.type = jqScript.type = 'text/javascript'
 			bsScript.src = "#{proto}//maxcdn.bootstrapcdn.com/bootstrap/#{bootstrapVersion}/js/bootstrap.min.js"
-			jqScript.onload = -> document.body.appendChild bsScript
+			jqScript.onload = -> document.documentElement.appendChild bsScript
 			document.documentElement.appendChild jqScript
 			collectMenus menuBySel
 		topHeaders = if headerEmpSel? then qSA headerEmpSel else false

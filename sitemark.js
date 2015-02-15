@@ -104,7 +104,7 @@
         bsScript.type = jqScript.type = 'text/javascript';
         bsScript.src = proto + "//maxcdn.bootstrapcdn.com/bootstrap/" + bootstrapVersion + "/js/bootstrap.min.js";
         jqScript.onload = function() {
-          return document.body.appendChild(bsScript);
+          return document.documentElement.appendChild(bsScript);
         };
         document.documentElement.appendChild(jqScript);
         collectMenus(menuBySel);
