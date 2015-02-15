@@ -63,19 +63,16 @@ htmlRender = (title, mdContent, themeName, menuBySel, menuMode, favicon) ->
 		body = "#{navSkeleton}<div class=container>#{htmlContent}</div>"
 		metas = '<meta charset=utf-8><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1">'
 		metas += "<link rel=icon href=\"#{favicon}\">" if favicon
-		outHtml = "<head>#{metas}<title>#{title}</title><link rel=stylesheet href=\"#{themeCss}\"></head><body style='padding-top:3em'>#{body}</body>"
+		outHtml = "<head>#{metas}<title>#{title}</title><link rel=stylesheet type=\"text/css\" href=\"#{themeCss}\"></head><body style='padding-top:3em'>#{body}</body>"
 		document.documentElement.innerHTML = outHtml
-		styleEl = document.createElement 'link'
-		styleEl.rel = 'stylesheet'
-		styleEl.href = themeCss
-		document.head.appendChild styleEl
 		if menuBySel
 			jqScript = document.createElement 'script'
 			jqScript.src = "#{proto}//code.jquery.com/jquery-#{jqVersion}.min.js"
 			bsScript = document.createElement 'script'
+			bsScript.type = jqScript.type = 'text/javascript'
 			bsScript.src = "#{proto}//maxcdn.bootstrapcdn.com/bootstrap/#{bootstrapVersion}/js/bootstrap.min.js"
-			jqScript.onload = -> document.body.appendChild bsScript
-			document.body.appendChild jqScript
+			jqScript.onload = -> document.documentElement.appendChild bsScript
+			document.documentElement.appendChild jqScript
 			collectMenus menuBySel
 		topHeaders = if headerEmpSel? then qSA headerEmpSel else false
 		if topHeaders and topHeaders.length
