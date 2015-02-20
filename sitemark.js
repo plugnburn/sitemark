@@ -101,7 +101,7 @@
       document.head.appendChild(metaIe);
       metaViewport = document.createElement('meta');
       metaViewport.name = 'viewport';
-      metaViewport.setAttribute('content', 'width=device-width, initial-scale-1');
+      metaViewport.setAttribute('content', 'width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no');
       document.head.appendChild(metaViewport);
       if (favicon) {
         linkFav = document.createElement('link');
