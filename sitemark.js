@@ -91,7 +91,7 @@
       document.body.style.display = 'none';
       document.title = title;
       navBtnSkeleton = menuBySel ? '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>' : '';
-      navSkeleton = '<nav class="navbar navbar-' + menuMode + ' navbar-fixed-top"><div class="container"><div class="navbar-header">' + navBtnSkeleton + '<a class="navbar-brand" href="#">' + title + '</a></div></div></nav>';
+      navSkeleton = '<nav class="navbar navbar-' + menuMode + ' navbar-fixed-top" style="-webkit-backface-visibility:hidden"><div class="container"><div class="navbar-header">' + navBtnSkeleton + '<a class="navbar-brand" href="#">' + title + '</a></div></div></nav>';
       metaCharset = document.createElement('meta');
       metaCharset.setAttribute('charset', 'utf-8');
       document.head.appendChild(metaCharset);
