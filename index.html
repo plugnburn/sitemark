@@ -6,7 +6,7 @@ Sitemark: Markdown single-pager library
 About the library
 -----------------
 
-Sitemark is a simple hosted or downloadable library that weighs almost nothing (minified version is under 4K) and allows you to publish your Markdown documents instantly as responsive, Bootstrap-based, themable, single-page websites. All your Markdown content is converted into HTML, and the second-level headings (or whatever you choose) turn into clickable menu entries. This website is built with Sitemark itself.
+Sitemark is a simple hosted or downloadable library that weighs almost nothing (minified version is under 5K) and allows you to publish your Markdown documents instantly as responsive, Bootstrap-based, themable, single-page websites. All your Markdown content is converted into HTML, and the second-level headings (or whatever you choose) turn into clickable menu entries. This website is built with Sitemark itself.
 
 Just write your plain Markdown and adjust some visual parameters in the root element attributes, and Sitemark will take care of the rest.
 
@@ -45,6 +45,7 @@ If you happen to use `<xmp>...</xmp>` tags **within** your document, you have to
 </pre>
 <script src="http://plugnburn.github.io/sitemark/sitemark.min.js"></script>
 ```
+
 _Note: if you have to substitute `<xmp>` tag for any other one, please test the rendering results carefully. Often `<textarea data-root>` tag will work fine._
 
 FAQ
@@ -56,19 +57,15 @@ Although Sitemark creation was somewhat inspired by Strapdown, it serves an enti
 
 **What Markdown version does Sitemark support?**
 
-Sitemark supports [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/).
+Since version 2, Sitemark contains a Landmark-based renderer and supports its Markdown syntax. You can read more about the syntax on the [Landmark] (https://gist.github.com/plugnburn/f0d12e38b6416a77c098) project page.
 
 **What technologies is Sitemark built on?**
 
-The answer is simple: written in CoffeeScript 1.9, uses GitHub Markdown API v3, Bootstrap with Bootswatch themes, and jQuery for mobile menu support (required by Bootstrap, loaded on-demand, no internal Sitemark parts use it). Minified version is compressed with [Google Closure Compiler](http://closure-compiler.appspot.com/home) in "advanced" mode.
-
-**I see that you use unauthorized GitHub API requests. Are any problems with their rate limits likely to occur?**
-
-Requests to GitHub API are issued **only when Markdown content changes**. Once the content is rendered, its rendered copy is saved into the browser's localStorage along with raw document checksum. API is called only if the live raw document checksum differs from the saved one on the next page load. However, if you use `<xmp>` tag, your document will look properly even in raw mode just in case you've run out of API calls.
+The answer is simple: written in JavaScript (ECMAScript 5 standard), uses Bootstrap with Bootswatch themes, and also jQuery for mobile menu support (required by Bootstrap, loaded on-demand, no internal Sitemark parts use it). Minified version is compressed with [Google Closure Compiler](http://closure-compiler.appspot.com/home) in "advanced" mode.
 
 **What old browsers does Sitemark support?**
 
-Honestly, Sitemark has not been tested on any IE, should work on IE9+. Although you don't have to worry about that so much. If a browser isn't supported, raw preformatted Markdown will be displayed to the visitor. That's the entire point of good Markdown writing style: your pages will remain readable even on Lynx.
+Honestly, Sitemark has not been tested on any IE but should work fine on IE9+ and Microsoft Edge. Also no Blackberry device was used for testing. Although you don't have to worry about that so much. If a browser isn't supported, raw preformatted Markdown text will be displayed to the visitor. That's the entire point of good Markdown writing style: your pages will remain readable even on Lynx.
 
 Get Sitemark
 ------------
@@ -76,18 +73,18 @@ Get Sitemark
 Sitemark library can be obtained and used in your projects in one of these ways:
 
 - **Include the hosted library:** `<script src="http://plugnburn.github.io/sitemark/sitemark.min.js"></script>`
-- **Include the hosted library embedded in a GIF:** `<script src="http://i.imgur.com/Yxcm9xr.gif"></script>` - yes, did you know that you can hide JS in GIF images thanks to [Giffer](https://gist.github.com/plugnburn/3364bc56ecc820534143) script?
 - **Download the minified version:** [sitemark.min.js](http://plugnburn.github.io/sitemark/sitemark.min.js)
-- **Download the source code and compile it with CoffeeScript 1.9+:** `git clone https://github.com/plugnburn/sitemark.git && cd sitemark && coffee -c sitemark.coffee`
+- **Download the source code from GitHub repo:** `git clone https://github.com/plugnburn/sitemark.git`
 
 Version timeline
 ----------------
 
+- **July 18, 2015** - v2.0 released: completely rewritten in pure JS, moved from GitHub API to an embedded version of [Landmark] (https://gist.github.com/plugnburn/f0d12e38b6416a77c098) renderer.
 - **February 20, 2015** - v1.2 released: multiple Android 2.2/2.3 navbar fixes.
 - **February 15, 2015** - v1.1 released: page construction was refactored to work around Android 2.2/2.3 browser rendering quirks.
 - **February 14, 2015** - initial Sitemark version (v1) released.
 
-* * *
+**********************************************************
 
 *&copy; [Revoltech](https://github.com/plugnburn) 2015*
 
