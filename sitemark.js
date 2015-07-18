@@ -6,39 +6,39 @@
     	    for(i=0;i<l;i++) s=s.replace(RegExp('\\'+escChars[i], 'g'), function(m){return'&#'+m.charCodeAt(0)+';'})
         	return s
 	    }, rules = [
-			{p:/\r\n/g, r:'\n'},
+		{p:/\r\n/g, r:'\n'},
 	        {p:/\n\s*```\n([^]*?)\n\s*```\s*\n/g, r:function(m,grp){return'<pre>'+esc(grp)+'</pre>'}},
-    	    {p:/`(.*?)`/g, r:function(m,grp){return'<code>'+esc(grp)+'</code>'}},
+	    	{p:/`(.*?)`/g, r:function(m,grp){return'<code>'+esc(grp)+'</code>'}},
 	        {p:/\n\s*(#+)(.*?)/g, r:function(m,hset,hval){m=hset.length;return'<h'+m+'>'+hval.trim()+'</h'+m+'>'}},
 	        {p:/\n\s*(.*?)\n={3,}\n/g, r:'\n<h1>$1</h1>\n'},
 	        {p:/\n\s*(.*?)\n-{3,}\n/g, r:'\n<h2>$1</h2>\n'},
-			{p:/___(.*?)___/g, r:'<u>$1</u>'},
+		{p:/___(.*?)___/g, r:'<u>$1</u>'},
 	        {p:/(\*\*|__)(.*?)\1/g, r:'<strong>$2</strong>'},
 	        {p:/(\*|_)(.*?)\1/g, r:'<em>$2</em>'},
-    	    {p:/~~(.*?)~~/g, r:'<del>$1</del>'},
+		{p:/~~(.*?)~~/g, r:'<del>$1</del>'},
         	{p:/:"(.*?)":/g, r:'<q>$1</q>'},
 	        {p:/\!\[([^\[]+?)\]\s*\(([^\)]+?)\)/g, r:'<img src="$2" alt="$1">'},
 	        {p:/\[([^\[]+?)\]\s*\(([^\)]+?)\)/g, r:'<a href="$2">$1</a>'},
 	        {p:/\n\s*(\*|\-)\s*([^\n]*)/g, r:'\n<ul><li>$2</li></ul>'},
-    	    {p:/\n\s*\d+\.\s*([^\n]*)/g, r:'\n<ol><li>$1</li></ol>'},
+		{p:/\n\s*\d+\.\s*([^\n]*)/g, r:'\n<ol><li>$1</li></ol>'},
 	        {p:/\n\s*(\>|&gt;)\s*([^\n]*)/g, r:'\n<blockquote>$2</blockquote>'},
 	        {p:/<\/(ul|ol|blockquote)>\s*<\1>/g, r: ' '},
 	        {p:/\n\s*\*{5,}\s*\n/g, r:'\n<hr>'},
-			{p:/\n{3,}/g, r:'\n\n'},
+		{p:/\n{3,}/g, r:'\n\n'},
 	        {p:/\n([^\n]+)\n/g, r:function(m, grp){grp=grp.trim();return /^\<\/?(ul|ol|bl|h\d|p).*/.test(grp.slice(0,9)) ? grp : ('<p>'+grp+'</p>')}},
 	        {p:/>\s+</g, r:'><'}
 	    ], l = rules.length, i		
 		return function(text) {
-            if(text = text || '') {
-				text = '\n' + text.trim() + '\n'
-                for(var i=0;i<l;i++) text = text.replace(rules[i].p, rules[i].r)
-			}
+		if(text = text || '') {
+			text = '\n' + text.trim() + '\n'
+ 	 	        for(var i=0;i<l;i++) text = text.replace(rules[i].p, rules[i].r)
+		}
             return text
         }
 	})(), 
 	
 	rootSel = 'xmp',
-	bootstrapVersion = '3.3.4',
+	bootstrapVersion = 'latest',
 	jqVersion = '2.1.3',
 	
 	D = w.document,
